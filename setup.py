@@ -29,7 +29,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Anif',
-    maintainer_email='emailmu@example.com',
+    maintainer_email='nazharanif2@gmail.com',
     description='Simulasi ASV untuk KKI',
     license='MIT',
     entry_points={
