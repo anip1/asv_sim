@@ -25,6 +25,6 @@ def generate_launch_description():
     )
 
     mixer = Node(package='asv_sim', executable='mixer', output='screen')
-    autopilot = Node(package='asv_sim', executable='autopilot', output='screen')
+    autopilot = Node(package='asv_sim', executable='autopilot', output='screen', parameters=[{'pilih_target': 'pasangan'}])
 
     return LaunchDescription([gazebo, bridge, mixer, autopilot])
