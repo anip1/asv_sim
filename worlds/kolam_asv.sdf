@@ -1,13 +1,13 @@
-<?xml version="1.0" ?>
+<?xml version='1.0' encoding='utf-8'?>
 <sdf version="1.9">
   <world name="kolam_asv">
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
     </physics>
-    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
-    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
-    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
     <plugin filename="gz-sim-buoyancy-system" name="gz::sim::systems::Buoyancy">
       <graded_buoyancy>
         <default_density>1000</default_density>
@@ -20,7 +20,6 @@
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
-
     <scene>
       <ambient>0.6 0.6 0.6 1</ambient>
       <background>0.6 0.8 0.95 1</background>
@@ -31,34 +30,57 @@
       <direction>-0.5 0.1 -0.9</direction>
       <diffuse>0.8 0.8 0.8 1</diffuse>
     </light>
-
     <model name="air">
       <static>true</static>
       <pose>15 0 -0.01 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><box><size>80 40 0.02</size></box></geometry>
-          <material><ambient>0.1 0.35 0.6 1</ambient><diffuse>0.1 0.35 0.6 1</diffuse></material>
+          <geometry>
+            <box>
+              <size>80 40 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.6 1</ambient>
+            <diffuse>0.1 0.35 0.6 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
-    
     <model name="kapal_anif">
       <pose>0 0 0.057 0 0 0</pose>
       <link name="lambung">
         <inertial>
           <pose>0 0 -0.03 0 0 0</pose>
           <mass>7.6</mass>
-          <inertia><ixx>0.18</ixx><iyy>0.55</iyy><izz>0.71</izz></inertia>
+          <inertia>
+            <ixx>0.18</ixx>
+            <iyy>0.55</iyy>
+            <izz>0.71</izz>
+          </inertia>
         </inertial>
         <visual name="badan">
-          <geometry><box><size>0.9 0.5 0.15</size></box></geometry>
-          <material><ambient>0.95 0.95 0.95 1</ambient><diffuse>0.95 0.95 0.95 1</diffuse></material>
+          <geometry>
+            <box>
+              <size>0.9 0.5 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.95 0.95 1</ambient>
+            <diffuse>0.95 0.95 0.95 1</diffuse>
+          </material>
         </visual>
         <visual name="penanda_haluan">
           <pose>0.35 0 0.08 0 0 0</pose>
-          <geometry><box><size>0.2 0.5 0.01</size></box></geometry>
-          <material><ambient>1 0.5 0 1</ambient><diffuse>1 0.5 0 1</diffuse></material>
+          <geometry>
+            <box>
+              <size>0.2 0.5 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.5 0 1</ambient>
+            <diffuse>1 0.5 0 1</diffuse>
+          </material>
         </visual>
         <sensor name="kamera_depan" type="camera">
           <pose>0.4 0 0.15 0 0.1 0</pose>
@@ -67,47 +89,106 @@
           <topic>kamera_depan</topic>
           <camera>
             <horizontal_fov>1.396</horizontal_fov>
-            <image><width>640</width><height>480</height><format>R8G8B8</format></image>
-            <clip><near>0.1</near><far>50</far></clip>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>50</far>
+            </clip>
           </camera>
         </sensor>
-        
         <collision name="apung_0_0">
           <pose>-0.3 -0.17 -0.032 0 0 0</pose>
-          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
         </collision>
         <collision name="apung_0_1">
           <pose>-0.3 0.17 -0.032 0 0 0</pose>
-          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
         </collision>
         <collision name="apung_1_0">
           <pose>0.0 -0.17 -0.032 0 0 0</pose>
-          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
         </collision>
         <collision name="apung_1_1">
           <pose>0.0 0.17 -0.032 0 0 0</pose>
-          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
         </collision>
         <collision name="apung_2_0">
           <pose>0.3 -0.17 -0.032 0 0 0</pose>
-          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
         </collision>
         <collision name="apung_2_1">
           <pose>0.3 0.17 -0.032 0 0 0</pose>
-          <geometry><sphere><radius>0.1</radius></sphere></geometry>
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
         </collision>
+        <sensor name="kamera_bawah" type="camera">
+          <pose>0.400 0.000 -0.150 0 0.45 0</pose>
+          <always_on>true</always_on>
+          <update_rate>1</update_rate>
+          <topic>/kamera_bawah</topic>
+          <camera>
+            <horizontal_fov>1.396</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>50</far>
+            </clip>
+          </camera>
+        </sensor>
       </link>
-      
       <link name="prop_kiri">
         <pose>-0.5 0.2 -0.06 0 0 0</pose>
         <inertial>
           <mass>0.2</mass>
-          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0005</izz></inertia>
+          <inertia>
+            <ixx>0.0005</ixx>
+            <iyy>0.0005</iyy>
+            <izz>0.0005</izz>
+          </inertia>
         </inertial>
         <visual name="visual">
           <pose>0 0 0 0 1.5708 0</pose>
-          <geometry><cylinder><radius>0.05</radius><length>0.02</length></cylinder></geometry>
-          <material><ambient>0.1 0.1 0.1 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
       <joint name="prop_kiri_joint" type="revolute">
@@ -115,7 +196,10 @@
         <child>prop_kiri</child>
         <axis>
           <xyz>1 0 0</xyz>
-          <limit><lower>-1e12</lower><upper>1e12</upper></limit>
+          <limit>
+            <lower>-1e12</lower>
+            <upper>1e12</upper>
+          </limit>
         </axis>
       </joint>
       <plugin filename="gz-sim-thruster-system" name="gz::sim::systems::Thruster">
@@ -126,17 +210,28 @@
         <max_thrust_cmd>20</max_thrust_cmd>
         <min_thrust_cmd>-20</min_thrust_cmd>
       </plugin>
-      
       <link name="prop_kanan">
         <pose>-0.5 -0.2 -0.06 0 0 0</pose>
         <inertial>
           <mass>0.2</mass>
-          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0005</izz></inertia>
+          <inertia>
+            <ixx>0.0005</ixx>
+            <iyy>0.0005</iyy>
+            <izz>0.0005</izz>
+          </inertia>
         </inertial>
         <visual name="visual">
           <pose>0 0 0 0 1.5708 0</pose>
-          <geometry><cylinder><radius>0.05</radius><length>0.02</length></cylinder></geometry>
-          <material><ambient>0.1 0.1 0.1 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
       <joint name="prop_kanan_joint" type="revolute">
@@ -144,7 +239,10 @@
         <child>prop_kanan</child>
         <axis>
           <xyz>1 0 0</xyz>
-          <limit><lower>-1e12</lower><upper>1e12</upper></limit>
+          <limit>
+            <lower>-1e12</lower>
+            <upper>1e12</upper>
+          </limit>
         </axis>
       </joint>
       <plugin filename="gz-sim-thruster-system" name="gz::sim::systems::Thruster">
@@ -157,11 +255,15 @@
       </plugin>
       <plugin filename="gz-sim-hydrodynamics-system" name="gz::sim::systems::Hydrodynamics">
         <link_name>lambung</link_name>
-        <xU>-4</xU><xAbsU>-6</xAbsU>
-        <yV>-25</yV><yAbsV>-10</yAbsV>
+        <xU>-4</xU>
+        <xAbsU>-6</xAbsU>
+        <yV>-25</yV>
+        <yAbsV>-10</yAbsV>
         <zW>-300</zW>
-        <kP>-6</kP><mQ>-15</mQ>
-        <nR>-5</nR><nAbsR>0</nAbsR>
+        <kP>-6</kP>
+        <mQ>-15</mQ>
+        <nR>-5</nR>
+        <nAbsR>0</nAbsR>
       </plugin>
       <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
         <odom_frame>odom</odom_frame>
@@ -170,14 +272,20 @@
         <dimensions>3</dimensions>
       </plugin>
     </model>
-    
     <model name="merah_1">
       <static>true</static>
       <pose>4.000 1.000 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -186,8 +294,15 @@
       <pose>4.000 -1.000 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -196,8 +311,15 @@
       <pose>7.000 1.644 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -206,8 +328,15 @@
       <pose>7.000 -0.356 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -216,8 +345,15 @@
       <pose>10.000 1.985 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -226,8 +362,15 @@
       <pose>10.000 -0.015 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -236,8 +379,15 @@
       <pose>13.000 1.863 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -246,8 +396,15 @@
       <pose>13.000 -0.137 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -256,8 +413,15 @@
       <pose>16.000 1.335 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -266,8 +430,15 @@
       <pose>16.000 -0.665 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -276,8 +447,15 @@
       <pose>19.000 0.649 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -286,8 +464,15 @@
       <pose>19.000 -1.351 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -296,8 +481,15 @@
       <pose>22.000 0.128 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -306,8 +498,15 @@
       <pose>22.000 -1.872 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -316,8 +515,15 @@
       <pose>25.000 0.018 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -326,8 +532,15 @@
       <pose>25.000 -1.982 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -336,8 +549,15 @@
       <pose>28.000 0.369 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -346,8 +566,15 @@
       <pose>28.000 -1.631 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -356,8 +583,15 @@
       <pose>31.000 1.017 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.9 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.1 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
@@ -366,8 +600,245 @@
       <pose>31.000 -0.983 0 0 0 0</pose>
       <link name="link">
         <visual name="visual">
-          <geometry><sphere><radius>0.12</radius></sphere></geometry>
-          <material><ambient>0.1 0.7 0.1 1</ambient><diffuse>0.1 0.7 0.1 1</diffuse></material>
+          <geometry>
+            <sphere>
+              <radius>0.12</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.1 0.7 0.1 1</ambient>
+            <diffuse>0.1 0.7 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="dermaga_awal">
+      <static>true</static>
+      <pose>-1.250 0.000 -0.025 0 0 0</pose>
+      <link name="l">
+        <collision name="c">
+          <geometry>
+            <box>
+              <size>1.200 2.000 0.550</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="v">
+          <geometry>
+            <box>
+              <size>1.200 2.000 0.550</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.45 0.35 1</ambient>
+            <diffuse>0.55 0.45 0.35 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="dermaga_finish">
+      <static>true</static>
+      <pose>38.800 0.000 0.115 0 0 0</pose>
+      <link name="l">
+        <collision name="c">
+          <geometry>
+            <box>
+              <size>1.600 3.000 0.830</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="v">
+          <geometry>
+            <box>
+              <size>1.600 3.000 0.830</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.55 0.55 0.5 1</ambient>
+            <diffuse>0.55 0.55 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="bola_biru">
+      <static>true</static>
+      <pose>37.750 0.000 0.180 0 0 0</pose>
+      <link name="l">
+        <collision name="c">
+          <geometry>
+            <sphere>
+              <radius>0.15</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="v">
+          <geometry>
+            <sphere>
+              <radius>0.15</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0 0.2 1 1</ambient>
+            <diffuse>0 0.2 1 1</diffuse>
+            <emissive>0 0.2 1 1</emissive>
+          </material>
+        </visual>
+        <visual name="tiang">
+          <pose>0.125 0 0 0 1.5708 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.012</radius>
+              <length>0.250</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pagar_0">
+      <static>true</static>
+      <pose>18.250 5.000 0.030 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <box>
+              <size>44.500 0.060 0.060</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1.0 0.8 0.0 1</ambient>
+            <diffuse>1.0 0.8 0.0 1</diffuse>
+            <emissive>1.0 0.8 0.0 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pagar_1">
+      <static>true</static>
+      <pose>18.250 -5.000 0.030 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <box>
+              <size>44.500 0.060 0.060</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1.0 0.8 0.0 1</ambient>
+            <diffuse>1.0 0.8 0.0 1</diffuse>
+            <emissive>1.0 0.8 0.0 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pagar_2">
+      <static>true</static>
+      <pose>-4.000 0.000 0.030 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <box>
+              <size>0.060 10.000 0.060</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1.0 0.8 0.0 1</ambient>
+            <diffuse>1.0 0.8 0.0 1</diffuse>
+            <emissive>1.0 0.8 0.0 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="pagar_3">
+      <static>true</static>
+      <pose>40.500 0.000 0.030 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <box>
+              <size>0.060 10.000 0.060</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1.0 0.8 0.0 1</ambient>
+            <diffuse>1.0 0.8 0.0 1</diffuse>
+            <emissive>1.0 0.8 0.0 1</emissive>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="objek_bawah_1">
+      <static>true</static>
+      <pose>8.500 1.000 -0.500 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0.5 0 1</ambient>
+            <diffuse>1 0.5 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="objek_bawah_2">
+      <static>true</static>
+      <pose>14.500 -1.000 -0.500 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="objek_bawah_3">
+      <static>true</static>
+      <pose>20.500 1.000 -0.500 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 1 1</ambient>
+            <diffuse>1 0 1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="objek_bawah_4">
+      <static>true</static>
+      <pose>26.500 -1.000 -0.500 0 0 0</pose>
+      <link name="l">
+        <visual name="v">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 1 1</ambient>
+            <diffuse>0 1 1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>

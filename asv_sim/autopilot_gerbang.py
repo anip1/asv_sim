@@ -40,7 +40,7 @@ class AutopilotGerbang(Node):
     def __init__(self):
         super().__init__("autopilot_gerbang")
         self.declare_parameter("auto_mulai", True)           # False = tunggu /misi/mulai
-        self.declare_parameter("pilih_target", "lama")       # "lama" atau "pasangan"
+        self.declare_parameter("pilih_target", "pasangan")   # "lama" atau "pasangan" (pasangan jauh lebih andal)
         self.pilih_target = self.get_parameter("pilih_target").value
         self.misi = Misi(log=self.get_logger().info,
                          auto_mulai=self.get_parameter("auto_mulai").value)
@@ -63,7 +63,15 @@ class AutopilotGerbang(Node):
         p = pesan.pose.pose
         q = p.orientation
         yaw = math.atan2(2.0 * (q.w * q.z + q.x * q.y), 1.0 - 2.0 * (q.y * q.y + q.z * q.z))
-        self.pose_gt = (p.position.x, p.position.y, yaw)
+        baru = (p.position.x, p.position.y, yaw)
+        if (self.pose_gt is not None
+                and math.hypot(baru[0] - self.pose_gt[0], baru[1] - self.pose_gt[1]) > 2.0):
+            # kapal tiba-tiba pindah >2 m = reset simulasi di Gazebo: mulai misi dari awal
+            self.get_logger().warn("Posisi kapal melompat (reset Gazebo?): misi diulang dari awal")
+            self.misi = Misi(log=self.get_logger().info,
+                             auto_mulai=self.get_parameter("auto_mulai").value)
+            self.ringkas_lalu = ""
+        self.pose_gt = baru
 
     def teks_pose(self):
         if self.pose_gt is None:

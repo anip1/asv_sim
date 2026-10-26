@@ -15,7 +15,7 @@ JUMLAH_GERBANG = 10
 # ---- Kendali menuju gerbang (dipindah dari autopilot_gerbang.py) ----
 V_JELAJAH = 0.5           # m/s
 V_MIN = 0.2               # m/s
-GAIN_BELOK = 1.5
+GAIN_BELOK = 0.7
 BELOK_MAKS = 0.8          # rad/s
 
 # ---- Melewati gerbang ----
@@ -80,6 +80,7 @@ class Misi:
         self._t_masuk = 0.0
         self._perintah = Perintah(V_MIN, 0.0)
         self._jarak = None              # jarak ke gerbang pada frame terakhir terlihat
+        self._jarak_min = None          # jarak terdekat yang terlihat sejak mulai mendekati gerbang ini
         self._jumlah_lihat = 0          # berapa frame gerbang ini terlihat
         self._sisi = 1.0                # + = target terakhir terlihat di kiri
         self._terakhir_terlihat = 0.0
@@ -129,6 +130,7 @@ class Misi:
         self._t_masuk = t
         if status == Status.GERBANG:
             self._jarak = None
+            self._jarak_min = None
             self._jumlah_lihat = 0
             self._terakhir_terlihat = t
             self._perintah = Perintah(V_MIN, 0.0)
@@ -143,13 +145,19 @@ class Misi:
         if titik is not None:
             maju, kiri = titik
             cukup = self._jumlah_lihat >= FRAME_MIN_LIHAT
-            lonjakan = (cukup and self._jarak is not None and self._jarak <= JARAK_LEWAT
-                        and maju >= self._jarak + LONJAKAN_LEWAT)
+            # Dibandingkan dengan jarak TERDEKAT yang pernah terlihat, bukan dengan frame sebelumnya:
+            # target sering bergeser bertahap (merah hilang dulu, lalu hijau) sehingga tiap frame
+            # hanya naik sedikit, padahal gerbangnya sudah terlewati.
+            ref = self._jarak_min if self._jarak_min is not None else self._jarak
+            lonjakan = (cukup and ref is not None and ref <= JARAK_LEWAT
+                        and maju >= ref + LONJAKAN_LEWAT)
             if lonjakan:                 # gerbang di depan sudah lewat, yang terlihat gerbang berikutnya
-                return self._mulai_lewat(t, f"target melonjak ke {maju:.2f} m")
+                self._jarak = ref        # jarak terakhir sebelum lewat = yang terdekat tadi
+                return self._mulai_lewat(t, f"target melonjak ke {maju:.2f} m dari yang terdekat {ref:.2f} m")
             self._terakhir_terlihat = t
             self._jumlah_lihat += 1
             self._jarak = maju
+            self._jarak_min = maju if self._jarak_min is None else min(self._jarak_min, maju)
             self._sisi = 1.0 if kiri >= 0 else -1.0
             self._perintah = kendali_ke_titik(titik)
             return self._perintah

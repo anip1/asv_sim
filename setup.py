@@ -34,6 +34,9 @@ setup(
     license='MIT',
     entry_points={
         'console_scripts': [
+            'keselamatan = asv_sim.keselamatan:main',
+            'dock_biru = asv_sim.dock_biru:main',
+            'dashboard = asv_sim.dashboard_web:main',
             'mixer = asv_sim.mixer_thruster:main',
             'autopilot = asv_sim.autopilot_gerbang:main',
         ],
